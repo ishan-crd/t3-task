@@ -83,8 +83,7 @@ export default function LoginPage() {
           Login with Ethereum
         </h1>
         <p className="mt-2 text-sm text-slate-300">
-          Connect your wallet, sign a short message, and we&apos;ll create a
-          secure HTTP-only cookie session.
+          Connect your walle and sign a short message.
         </p>
 
         <div className="mt-6 space-y-3">
@@ -125,12 +124,7 @@ export default function LoginPage() {
           )}
         </div>
 
-        <p className="mt-6 text-xs text-slate-400">
-          Under the hood: the backend issues a nonce, verifies your signature,
-          and then sets an <span className="font-semibold">HTTP-only</span>{" "}
-          cookie storing your session token. tRPC middleware uses that cookie on
-          every request.
-        </p>
+        
       </div>
     </main>
   );

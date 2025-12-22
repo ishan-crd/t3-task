@@ -88,8 +88,7 @@ export default function DashboardPage() {
             Create a post
           </h2>
           <p className="mt-1 text-xs text-slate-300">
-            This calls a <span className="font-mono">post.create</span> tRPC
-            mutation which is protected by the auth middleware.
+            Using <span className="font-mono">post.create</span>
           </p>
 
           <form
@@ -131,7 +130,7 @@ export default function DashboardPage() {
             Your posts
           </h2>
           <p className="mt-1 text-xs text-slate-300">
-            Powered by the protected <span className="font-mono">post.list</span> query.
+            Using <span className="font-mono">post.list</span>
           </p>
 
           {postsQuery.isLoading ? (

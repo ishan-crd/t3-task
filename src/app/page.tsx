@@ -10,8 +10,8 @@ export default function Home() {
         <p className="mt-2 text-sm text-slate-300">
           Ethereum wallet login with{" "}
           <span className="font-semibold">signed messages</span>, secure{" "}
-          <span className="font-semibold">HTTP-only cookies</span>, and{" "}
-          <span className="font-semibold">tRPC-protected APIs</span>.
+          <span className="font-semibold">HTTP only cookies</span>, and{" "}
+          <span className="font-semibold">trpc protected APIs</span>.
         </p>
 
         <div className="mt-8 flex flex-col gap-3">
@@ -31,12 +31,12 @@ export default function Home() {
 
         <div className="mt-8 rounded-xl border border-white/5 bg-slate-900/70 p-4 text-xs text-slate-300">
           <p className="font-semibold text-slate-100">
-            How this app is structured
+            App Working
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-4">
-            <li>tRPC public routes for nonce + signature verification</li>
-            <li>HTTP-only cookie sessions with Prisma-backed storage</li>
-            <li>tRPC middleware enforcing auth for protected routes</li>
+            <li>16byte nonce creation</li>
+            <li>HTTP only cookie sessions with Prisma backed storage</li>
+            <li>trpc middleware</li>
           </ul>
         </div>
         </div>
