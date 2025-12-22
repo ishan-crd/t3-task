@@ -36,7 +36,6 @@ export const authRouter = router({
         },
       });
 
-      // Store nonce in a short-lived session row with a special token prefix.
       await ctx.db.session.create({
         data: {
           token: `nonce-${nonce}`,
@@ -91,7 +90,6 @@ export const authRouter = router({
         throw new TRPCError({ code: "UNAUTHORIZED", message: "Nonce expired or not found" });
       }
 
-      // Clean up nonce session
       await ctx.db.session.delete({ where: { id: nonceSession.id } });
 
       const sessionToken = randomBytes(32).toString("hex");
@@ -128,7 +126,6 @@ export const authRouter = router({
     }),
 
   logout: publicProcedure.mutation(async ({ ctx }) => {
-    // Clear cookie on client by setting it expired
     const isProd = process.env.NODE_ENV === "production";
     const expiredCookie = [
       "session-token=deleted",
