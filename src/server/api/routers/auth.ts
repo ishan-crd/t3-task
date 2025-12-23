@@ -21,29 +21,31 @@ export const authRouter = router({
         Date.now() + NONCE_TTL_MINUTES * 60 * 1000,
       );
 
-      await ctx.db.user.upsert({
-        where: { address },
-        update: {},
-        create: {
-          address,
-        },
-      });
-
-      await ctx.db.session.deleteMany({
-        where: {
-          user: { address },
-          expiresAt: { lt: new Date() },
-        },
-      });
-
-      await ctx.db.session.create({
-        data: {
-          token: `nonce-${nonce}`,
-          user: {
-            connect: { address },
+      await ctx.db.$transaction(async (tx) => {
+        await tx.user.upsert({
+          where: { address },
+          update: {},
+          create: {
+            address,
           },
-          expiresAt,
-        },
+        });
+
+        await tx.session.deleteMany({
+          where: {
+            user: { address },
+            expiresAt: { lt: new Date() },
+          },
+        });
+
+        await tx.session.create({
+          data: {
+            token: `nonce-${nonce}`,
+            user: {
+              connect: { address },
+            },
+            expiresAt,
+          },
+        });
       });
 
       const message = `Sign this message to authenticate.\n\nNonce: ${nonce}`;
